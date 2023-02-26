@@ -48,7 +48,7 @@ tp() {
   echo "======================================================="
   echo -n "Integration test count          : "
   echo $int_test_cnt
-  echo -n "Cucumber Integration test count : "
+  echo -n "BDD Integration test count      : "
   echo $cucumber_test_cnt
   echo -n "Total Integration test count    : "
   echo $total_int_test_cnt
@@ -71,7 +71,7 @@ tp() {
   unit_test_pct=$((100 * $unit_test_cnt / $total_test_cnt))
 
   tput setaf 5
-  echo "Suggestions :"
+  echo "Suggestions (consider only if necessary):"
   if [ $int_test_pct -ge $unit_test_pct ]; then
     tput setaf 1
     echo " * test suite needs refactoring - add more unit tests and optionally decrease the integration tests"
