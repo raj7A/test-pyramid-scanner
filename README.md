@@ -15,14 +15,34 @@ The main issue is the lack of early feedback about the number of tests written, 
 
 ### How :
 Ways to execute ->
-1. tp /{app_base_path}
-   - tp /test-pyramid-scanner/demo
-2. Integrate as git PRE-COMMIT hook (better and suggested). 
-   - Add the below lines in /Users/12345/.gitconfig file :
-     - [core] \
-     hooksPath = /Users/12345/.git-template/hooks
-   - Create this path/file if not exists already,
-     - /Users/12345/.git-template/hooks/pre-commit
-   - Copy and paste the complete content from 'tp' script file into 'pre-commit' file
+1. bash tp /{application_absolute_path}
+   - bash tp /Users/12345/Documents/MyApps/test-pyramid-scanner/demo
+   
 
-Sample Output :
+   ![](misc/tp_demo_output.png)
+
+
+   
+2. Integrate as git GLOBAL PRE-COMMIT hook (better and suggested). 
+   - Add the below lines in /Users/12345/.gitconfig file : \
+     [core] \
+     hooksPath = /Users/12345/.git-template/hooks
+   - Create this folder if not exists already,
+     - /Users/12345/.git-template/hooks
+   - If 'pre-commit' file already exists, copy and paste the script to the end, else,
+     - Copy and paste the 'tp' script file into /Users/12345/.git-template/hooks and rename to 'pre-commit'
+     - Make it executable -> chmod +x 'pre-commit'
+   - Test it with any of your existing git repo/https://github.com/spring-projects/spring-petclinic)
+
+
+
+<img src="misc/tp_pet_output.png"/>
+
+
+
+
+
+
+
+
+#### Note : Supports only for Java, springboot, cucumber(bdd) based applications

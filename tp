@@ -120,8 +120,9 @@ else
 fi
 basePath=$(PWD)
 
-count=$(grep -iR --include=pom.xml "<module>" | wc -l | bc)
-if [ $count -gt 0 ]; then
+mavenCount=$(grep -iR --include=pom.xml "<module>" | wc -l | bc)
+gradleCount=$(grep -iR --include=settings.gradle "include" | wc -l | bc)
+if [ $mavenCount -gt 0 ]; then
   tput setaf 9
   echo "Multi-module scan on " $basePath
   echo "   "
@@ -132,6 +133,18 @@ if [ $count -gt 0 ]; then
     tp src/test
     cd $basePath
   done
+elif [ $gradleCount -gt 0 ]; then
+  tput setaf 9
+    echo "Multi-module scan on " $basePath
+    echo "   "
+    tput setaf 7
+    for line in $(grep -iR --include=settings.gradle "include" | cut "-d " -f2); do
+      appName=$(echo $line |sed "s/'/ /g")
+      echo $appName
+      cd $appName
+      tp src/test
+      cd $basePath
+    done
 else
   tput setaf 9
   echo "Single Module scan on " $basePath
