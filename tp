@@ -18,7 +18,7 @@ get_total_test_count() {
 get_integration_test_count() {
   prevLine=""
   int_test_cnt=0
-  for line in $(grep -iR '@SpringBootTest\|@DataJpaTest\|@WebMvcTest' | cut "-d:" -f1); do
+  for line in $(grep -iR '@Spring.*Test\|@Data.*Test\|@Rest.*Test\|@Web.*Test\|@JdbcTest' | cut "-d:" -f1); do
     if [ "$prevLine" != "$line" ]; then
       tmp=$(grep -c "@Test" "$line")
       int_test_cnt=$((int_test_cnt + tmp))
