@@ -1,9 +1,4 @@
 #!/bin/bash
-tput setaf 9
-echo "*************************Test Pyramid - Scan started*************************"
-start=$(date +%s)
-tput setaf 7
-
 float_to_int() {
   echo "$1" | cut -d. -f1
 }
@@ -14,6 +9,75 @@ calculate_percentage() {
   else
     echo 0.0
   fi
+}
+
+get_total_test_count() {
+  grep -iR "@Test" | wc -l | bc
+}
+
+get_integration_test_count() {
+  prevLine=""
+  int_test_cnt=0
+  for line in $(grep -iR '@SpringBootTest\|@DataJpaTest\|@WebMvcTest' | cut "-d:" -f1); do
+    if [ "$prevLine" != "$line" ]; then
+      tmp=$(grep -c "@Test" "$line")
+      int_test_cnt=$((int_test_cnt + tmp))
+    fi
+    prevLine=$line
+  done
+  echo $int_test_cnt
+}
+
+get_bdd_integration_test_count() {
+  bdd_test_cnt=0
+  for line in $(grep -iR --include=*.feature "Feature" | cut "-d:" -f1); do
+    tmp=$(grep -c "Scenario" "$line")
+    bdd_test_cnt=$((bdd_test_cnt + tmp))
+  done
+  echo $bdd_test_cnt
+}
+
+get_maven_modules_count() {
+  grep -iR --include=pom.xml "<module>" | wc -l | bc
+}
+
+get_gradle_modules_count() {
+  grep -iR --include=settings.gradle "include" | wc -l | bc
+}
+
+tp_for_maven_multi_module() {
+  tput setaf 9
+  echo "Maven Multi-module scan on " "$basePath"
+  echo "   "
+  tput setaf 7
+  for line in $(grep -iR --include=pom.xml "<module>" | cut "-d:" -f2); do
+    appName=$(echo "$line" | sed 's~<[^<>]*>\([^<>]*\)</[^<>]*>~\1~' | sed 's/ //g')
+    cd "$appName"
+    tp src/test
+    cd "$basePath"
+  done
+}
+
+tp_for_gradle_multi_module() {
+  tput setaf 9
+  echo "Gradle Multi-module scan on " "$basePath"
+  echo "   "
+  tput setaf 7
+  for line in $(grep -iR --include=settings.gradle "include" | cut "-d " -f2); do
+    appName=$(echo $line | sed "s/'/ /g")
+    echo "$appName"
+    cd "$appName"
+    tp src/test
+    cd "$basePath"
+  done
+}
+
+tp_for_generic_single_module() {
+  tput setaf 9
+  echo "Single Module scan on " "$basePath"
+  echo "   "
+  tput setaf 7
+  tp src/test
 }
 
 tp() {
@@ -28,30 +92,18 @@ tp() {
     exit
   fi
   #get total test count
-  total_test_cnt=$(grep -iR "@Test" | wc -l | bc)
+  total_test_cnt=$(get_total_test_count)
 
   #get Integration test count
-  int_test_cnt=0
-  prevLine=""
-  for line in $(grep -iR '@SpringBootTest\|@DataJpaTest\|@WebMvcTest' | cut "-d:" -f1); do
-    if [ "$prevLine" != "$line" ]; then
-      tmp=$(grep -c "@Test" "$line")
-      int_test_cnt=$((int_test_cnt + tmp))
-    fi
-    prevLine=$line
-  done
+  int_test_cnt=$(get_integration_test_count)
 
-  #get cucumber Integration test count
-  cucumber_test_cnt=0
-  for line in $(grep -iR --include=*.feature "Feature" | cut "-d:" -f1); do
-    tmp=$(grep -c "Scenario" "$line")
-    cucumber_test_cnt=$((cucumber_test_cnt + tmp))
-  done
+  #get bdd Integration test count
+  bdd_test_cnt=$(get_bdd_integration_test_count)
 
   #get total integration test count
-  total_int_test_cnt=$((int_test_cnt + cucumber_test_cnt))
-  #get total test count (add cucumber test count)
-  total_test_cnt=$((total_test_cnt + cucumber_test_cnt))
+  total_int_test_cnt=$((int_test_cnt + bdd_test_cnt))
+  #get total test count (add bdd test count)
+  total_test_cnt=$((total_test_cnt + bdd_test_cnt))
   #get Unit test count
   unit_test_cnt=$((total_test_cnt - total_int_test_cnt))
 
@@ -64,7 +116,7 @@ tp() {
   echo -n "Integration test count          : "
   echo $int_test_cnt
   echo -n "BDD Integration test count      : "
-  echo $cucumber_test_cnt
+  echo $bdd_test_cnt
   echo -n "Total Integration test count    : "
   echo $total_int_test_cnt
   echo -n "Unit test count                 : "
@@ -118,7 +170,7 @@ tp() {
   echo "  "
 }
 
-# not used yet
+# not used
 displayPyramid() {
   x=$1
   while [ "$x" -ge 1 ]; do
@@ -130,6 +182,11 @@ displayPyramid() {
 }
 
 #Main
+tput setaf 9
+echo "*************************Test Pyramid - Scan started*************************"
+start=$(date +%s)
+tput setaf 7
+
 if [ -z "$1" ]; then
   echo "Base path to scan not passed - using current path as default"
 else
@@ -137,38 +194,16 @@ else
 fi
 basePath=$(PWD)
 
-mavenCount=$(grep -iR --include=pom.xml "<module>" | wc -l | bc)
-gradleCount=$(grep -iR --include=settings.gradle "include" | wc -l | bc)
+mavenCount=$(get_maven_modules_count)
+gradleCount=$(get_gradle_modules_count)
 if [ "$mavenCount" -gt 0 ]; then
-  tput setaf 9
-  echo "Multi-module scan on " $basePath
-  echo "   "
-  tput setaf 7
-  for line in $(grep -iR --include=pom.xml "<module>" | cut "-d:" -f2); do
-    appName=$(echo "$line" | sed 's~<[^<>]*>\([^<>]*\)</[^<>]*>~\1~' | sed 's/ //g')
-    cd "$appName"
-    tp src/test
-    cd "$basePath"
-  done
+  tp_for_maven_multi_module
 elif [ "$gradleCount" -gt 0 ]; then
-  tput setaf 9
-  echo "Multi-module scan on " "$basePath"
-  echo "   "
-  tput setaf 7
-  for line in $(grep -iR --include=settings.gradle "include" | cut "-d " -f2); do
-    appName=$(echo $line | sed "s/'/ /g")
-    echo "$appName"
-    cd "$appName"
-    tp src/test
-    cd "$basePath"
-  done
+  tp_for_gradle_multi_module
 else
-  tput setaf 9
-  echo "Single Module scan on " "$basePath"
-  echo "   "
-  tput setaf 7
-  tp src/test
+  tp_for_generic_single_module
 fi
+
 tput setaf 9
 end=$(date +%s)
 echo "Elapsed time: $(($(((end - start) * 1000))))ms"
