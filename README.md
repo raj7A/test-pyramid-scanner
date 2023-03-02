@@ -30,7 +30,7 @@ Install as git GLOBAL PRE-COMMIT hook (better and suggested) - Use any one appro
 ```
     bash install.sh
 ```
-And then add the below line inside corresponding terminal startup file (like "$HOME/.zshrc")
+And then add the below line inside corresponding terminal startup file (like "$HOME/.zshrc") - can be accessed globally via alias:
 ```
     alias tp-scanner="$HOME/scripts/tp-scanner"
 ```
@@ -48,14 +48,14 @@ And then add the below line inside corresponding terminal startup file (like "$H
 4. Append/Add the below lines in "$HOME/.git-template/hooks/pre-commit" file (create the file if missing) : \
 ```
     ########## test pyramid scan ##########
-    tp-scanner
+    $HOME/scripts/tp-scanner
     ########## test pyramid scan ##########
 ```
 6. Make 'pre-commit' executable using the below command : 
 ```
     chmod +x 'pre-commit'
 ```
-7. Add the below line inside corresponding terminal startup file (like "$HOME/.zshrc") : 
+7. Add the below line inside corresponding terminal startup file (like "$HOME/.zshrc") - can be accessed globally via alias: 
 ```
     alias tp-scanner="$HOME/scripts/tp-scanner"
 ```
