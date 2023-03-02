@@ -27,11 +27,14 @@ Ways to execute ->
    - Add the below lines in /Users/12345/.gitconfig file : \
      [core] \
      hooksPath = /Users/12345/.git-template/hooks
-   - Create this folder if not exists already,
-     - /Users/12345/.git-template/hooks
-   - If 'pre-commit' file already exists, copy and paste the script to the end, else,
-     - Copy and paste the 'tp' script file into /Users/12345/.git-template/hooks and rename to 'pre-commit'
-     - Make it executable -> chmod +x 'pre-commit'
+   - Create the below folder, if not exists already,
+     - /Users/12345/.git-template/hooks/
+   - If 'pre-commit' script already exists in '/Users/12345/.git-template/hooks/' folder,
+     - copy and paste the 'tp' script content to end of the 'pre-commit' script.
+   - If 'pre-commit' script doesn't exist, 
+     - Copy and paste the 'tp' script file into '/Users/12345/.git-template/hooks' and rename to 'pre-commit'
+     - Make 'pre-commit' executable uisng the below commad -> \
+            chmod +x 'pre-commit'
    - Test it with any of your existing git repo/https://github.com/spring-projects/spring-petclinic)
 
 
