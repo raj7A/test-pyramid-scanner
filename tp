@@ -1,4 +1,5 @@
 #!/bin/bash
+########### test-pyramid-scanner ###########
 unit_test_identifier='@Test\b\|@ParameterizedTest\|@RepeatedTest\|@TestFactory\|@TestTemplate'
 integration_test_identifier='@Spring.*Test\|@Data.*Test\|@Rest.*Test\|@Web.*Test\|@JdbcTest\|@MicronautTest'
 float_to_int() {
@@ -211,3 +212,4 @@ end=$(date +%s)
 echo "Elapsed time: $(($(((end - start) * 1000))))ms"
 echo "*************************Test Pyramid - Scan ended  *************************"
 tput setaf 7
+########### test-pyramid-scanner ###########

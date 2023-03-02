@@ -14,29 +14,32 @@ As the Integration test increases(relatively less unit test), tests get slower a
 The main issue is the lack of early feedback about the number of tests written, this script could fill in that void and make the developers more proactive (when integrated as PRE-COMMIT hook).
 
 ### How :
-Ways to execute ->
-1. bash tp /{application_absolute_path}
-   - bash tp /Users/12345/Documents/MyApps/test-pyramid-scanner/demo
+#### Installation & Ways to execute ->
+1. bash tp $HOME/{application_absolute_path}
+   - bash tp $HOME/test-pyramid-scanner/demo
    
 
    ![](misc/tp_demo_output.png)
 
 
    
-2. Integrate as git GLOBAL PRE-COMMIT hook (better and suggested). 
-   - Add the below lines in /Users/12345/.gitconfig file : \
-     [core] \
-     hooksPath = /Users/12345/.git-template/hooks
-   - Create the below folder, if not exists already,
-     - /Users/12345/.git-template/hooks/
-   - If 'pre-commit' script already exists in '/Users/12345/.git-template/hooks/' folder,
-     - copy and paste the 'tp' script content to end of the 'pre-commit' script.
-   - If 'pre-commit' script doesn't exist, 
-     - Copy and paste the 'tp' script file into '/Users/12345/.git-template/hooks' and rename to 'pre-commit'
-     - Make 'pre-commit' executable uisng the below commad -> \
-            chmod +x 'pre-commit'
-   - Test it with any of your existing git repo/https://github.com/spring-projects/spring-petclinic)
+2. Install as git GLOBAL PRE-COMMIT hook (better and suggested) - Use any one approach from below:
+   1. Execute install.sh (automatic):
+         - bash install.sh
+   3. Follow the below steps (manual) :
+         - Add the below lines in "$HOME/.gitconfig file" : \
+           [core] \
+           hooksPath = {home_path_dir}/.git-template/hooks
+         - Create the below folder, if not exists already,
+           - $HOME/.git-template/hooks/
+         - If 'pre-commit' script already exists in "$HOME/.git-template/hooks/" folder,
+           - copy and paste the 'tp' script content into end of the 'pre-commit' script.
+         - If 'pre-commit' script doesn't exist, 
+           - Copy and paste the 'tp' script file into "$HOME/.git-template/hooks" and rename to 'pre-commit'
+           - Make 'pre-commit' executable using the below command : \
+                  chmod +x 'pre-commit'
 
+Test it with any of your existing git repo/clone this repo https://github.com/spring-projects/spring-petclinic)
 
 
 <img src="misc/tp_pet_output.png"/>
