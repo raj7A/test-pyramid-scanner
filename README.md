@@ -45,4 +45,8 @@ Ways to execute ->
 
 
 
-#### Note : Supports only for Java, springboot, cucumber(bdd) based applications
+#### Note : 
+    1. Supports only for Java , springboot, micronaut, cucumber(bdd) based applications
+    2. Support to scan Maven/Gradle multi-module at once
+    3. This suite can be considered as 95% accurate - As the tests are identified loosely based on Unix grep command,
+       the Counts and Percentages are NOT exact replication of test counts (consider a method having @test commented out, still it will be included in our test count).

@@ -1,4 +1,6 @@
 #!/bin/bash
+unit_test_identifier='@Test\b\|@ParameterizedTest\|@RepeatedTest\|@TestFactory\|@TestTemplate'
+integration_test_identifier='@Spring.*Test\|@Data.*Test\|@Rest.*Test\|@Web.*Test\|@JdbcTest\|@MicronautTest'
 float_to_int() {
   echo "$1" | cut -d. -f1
 }
@@ -12,15 +14,15 @@ calculate_percentage() {
 }
 
 get_total_test_count() {
-  grep -iR "@Test" | wc -l | bc
+  grep -iR $unit_test_identifier | wc -l | bc
 }
 
 get_integration_test_count() {
   prevLine=""
   int_test_cnt=0
-  for line in $(grep -iR '@Spring.*Test\|@Data.*Test\|@Rest.*Test\|@Web.*Test\|@JdbcTest' | cut "-d:" -f1); do
+  for line in $(grep -iR $integration_test_identifier | cut "-d:" -f1); do
     if [ "$prevLine" != "$line" ]; then
-      tmp=$(grep -c "@Test" "$line")
+      tmp=$(grep -c $unit_test_identifier "$line")
       int_test_cnt=$((int_test_cnt + tmp))
     fi
     prevLine=$line
