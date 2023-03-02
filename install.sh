@@ -2,7 +2,7 @@
 tput setaf 9
 echo "Test pyramid Installation started"
 tput setaf 2
-git_hook_path="$HOME/.git-template/hooks123"
+git_hook_path="$HOME/.git-template/hooks"
 git_pre_commit_file="$git_hook_path/pre-commit"
 
 if [ -d "$git_hook_path" ]; then
