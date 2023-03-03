@@ -40,7 +40,7 @@ if [ "$tp_count" -gt 0 ]; then
   echo "tp-scanner command already placed in pre-commit"
 else
   echo "########## test pyramid scan ##########" >>"$git_pre_commit_file"
-  echo "tp-scanner" >>"$git_pre_commit_file"
+  echo "$HOME/scripts/tp-scanner" >>"$git_pre_commit_file"
   echo "########## test pyramid scan ##########" >>"$git_pre_commit_file"
   echo "tp-scanner command placed into pre-commit"
 fi
