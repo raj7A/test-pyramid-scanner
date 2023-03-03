@@ -24,9 +24,9 @@ The main issue is the lack of early feedback about the number of tests written, 
 
 
 #### With installation :
-Install as git GLOBAL PRE-COMMIT hook (better and suggested) - Use any one approach from below. \
+Install as git GLOBAL PRE-COMMIT hook (better and suggested) - follow any **ONE** approach from below. \
 
-#### 1. Using install.sh script :
+#### Approach 1. Using install.sh script :
 ```
     bash install.sh
 ```
@@ -34,7 +34,7 @@ And then add the below line inside corresponding terminal startup file (like "$H
 ```
     alias tp-scanner="$HOME/scripts/tp-scanner"
 ```
-#### 2. Manual steps :
+#### Approach 2. Manual steps :
 1. Follow the below steps (manual) :
          - Add the below lines in "$HOME/.gitconfig file" : \
 ```
@@ -55,7 +55,7 @@ And then add the below line inside corresponding terminal startup file (like "$H
 ```
     chmod +x 'pre-commit'
 ```
-7. Add the below line inside corresponding terminal startup file (like "$HOME/.zshrc") : 
+7. Add the below line inside corresponding terminal startup file (like "$HOME/.zshrc" if on mac) : 
 ```
     alias tp-scanner="$HOME/scripts/tp-scanner"
 ```
@@ -64,7 +64,7 @@ And then add the below line inside corresponding terminal startup file (like "$H
     source "$HOME/.zshrc"
 ```
 
-**To test the installation :** \
+**Once the installation is done :** \
 _Test it (git commit) with any of your existing git repo/clone this repo https://github.com/spring-projects/spring-petclinic)_
 
 

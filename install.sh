@@ -4,6 +4,7 @@ echo "Test pyramid Installation started"
 tput setaf 2
 git_hook_path="$HOME/.git-template/hooks"
 git_pre_commit_file="$git_hook_path/pre-commit"
+git_pre_commit_file_bkp="$git_hook_path/pre-commit-bkp"
 tp_script_path="$HOME/scripts"
 tp_script_file="$tp_script_path/tp-scanner"
 
@@ -22,7 +23,8 @@ else
 fi
 
 if [ -f "$git_pre_commit_file" ]; then
-  echo "git pre-commit hook file already present - " "$git_pre_commit_file"
+  echo "git pre-commit hook file already present - taking a backup" "$git_pre_commit_file_bkp"
+  cp $git_pre_commit_file $git_pre_commit_file_bkp
 else
   echo "git pre-commit hook file not present, creating one - " "$git_pre_commit_file"
 fi
