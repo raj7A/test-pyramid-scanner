@@ -48,4 +48,4 @@ chmod +x "$git_pre_commit_file"
 
 tput setaf 9
 echo "Test pyramid Installation ended"
-tput setaf 2
+tput setaf reset

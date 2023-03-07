@@ -56,7 +56,7 @@ tp_for_maven_multi_module() {
   for line in $(grep -iR --include=pom.xml "<module>" | cut "-d:" -f2); do
     appName=$(echo "$line" | sed 's~<[^<>]*>\([^<>]*\)</[^<>]*>~\1~' | sed 's/ //g')
     cd "$appName"
-    tp src/test
+    tp src
     cd "$basePath"
   done
 }
@@ -70,7 +70,7 @@ tp_for_gradle_multi_module() {
     appName=$(echo $line | sed "s/'/ /g")
     echo "$appName"
     cd "$appName"
-    tp src/test
+    tp src
     cd "$basePath"
   done
 }
@@ -80,7 +80,7 @@ tp_for_generic_single_module() {
   echo "Single Module scan on " "$basePath"
   echo "   "
   tput setaf 7
-  tp src/test
+  tp src
 }
 
 tp() {
@@ -211,5 +211,5 @@ tput setaf 9
 end=$(date +%s)
 echo "Elapsed time: $(($(((end - start) * 1000))))ms"
 echo "*************************Test Pyramid - Scan ended  *************************"
-tput setaf 7
+tput setaf reset
 ########### test-pyramid-scanner ###########
