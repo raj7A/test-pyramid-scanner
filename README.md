@@ -9,9 +9,12 @@ https://martinfowler.com/articles/practical-test-pyramid.html
 The "tp-scanner" script could be used to give us a sense of TestPyramid of our applications (mainly the Unit tests + Integration/service tests).
 
 ### Why :
-Developers working on the applications can easily miss the count on number tests that is written over the time. \
-As the Integration test increases(relatively less unit test), tests get slower and leading to unnecessary refactoring. \
-The main issue is the lack of early feedback about the number of tests written, this script could fill in that void and make the developers more proactive (when integrated as PRE-COMMIT hook).
+- _Have a legacy application and want to see the maturity of apps wrt test pyramid ?_
+   - this script can be invoked on adhoc basis and see the result.
+- _Developing/enhancing the application and need continuous feedback ?_
+   - Developers working on the applications can easily miss the count on "number of tests" that is written over the time. 
+   - As the Integration test increases(OR less unit tests), test suite execution time gets higher. This impacts the developer experience and CI processing      time, which eventually leads to the decision of refactoring the applicationn. 
+   - Since the main issue is the lack of early feedback on the "number of tests" written, this script could fill in that void. Integrate this script as          PRE-COMMIT hook and make the developers more proactive by providing continuous feedback.
 
 ### How :
 #### Without installation : 
