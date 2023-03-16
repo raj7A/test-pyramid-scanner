@@ -87,7 +87,7 @@ _Test it (git commit) with any of your existing git repo/clone this repo https:/
 Remove the following lines from "$HOME/.git-template/hooks/pre-commit" file
 ```
     ########## test pyramid scan ##########
-    /Users/INE12393602/scripts/tp-scanner
+    $HOME/scripts/tp-scanner
     ########## test pyramid scan ##########
 ```
 </details>
