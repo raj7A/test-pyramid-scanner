@@ -6,7 +6,9 @@ Test pyramid is one of good practices that should be followed while working on t
 
 https://martinfowler.com/articles/practical-test-pyramid.html
 
-The "tp-scanner" script could be used to give us a sense of TestPyramid of our applications (mainly the Unit tests + Integration/service tests).
+This "tp-scanner" script could be used to give us a sense of TestPyramid of our applications (mainly the Unit tests + Integration/service tests).
+
+#### _Note : There are other automation test shapes apart from the pyramid, such as the honeycomb and the test trophy. Essentially, they all emphasize the same principle: that micro-level tests(unit tests) are easier to write and run than macro-level tests(Integration/e2e tests)._
 
 ### Why :
 - _Have a legacy application and want to see the maturity of apps wrt test pyramid ?_
