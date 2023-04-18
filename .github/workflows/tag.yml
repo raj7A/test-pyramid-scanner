@@ -20,7 +20,6 @@ jobs:
         run: |
           git config --global user.email "raj7.eie@gmail.com"
           git config --global user.name "Anand Raj"
-          git tag -a v1.0 -m "Version 1.0"
           
           VERSION=`git describe --abbrev=0 --tags`
 
@@ -63,11 +62,9 @@ jobs:
           
           #only tag if no tag already (would be better if the git describe command above could have a silent option)
           if [ -z "$NEEDS_TAG" ]; then
-          echo "Tagged with $NEW_TAG (Ignoring fatal:cannot describe - this means commit is untagged) "
+          echo "Tagged with $NEW_TAG"
           git tag $NEW_TAG
           git push --tags
           else
           echo "Already a tag on this commit"
           fi
-          
-          git push origin v1.0
