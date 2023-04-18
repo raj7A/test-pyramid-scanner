@@ -14,3 +14,4 @@ jobs:
           git config --global user.email "raj7.eie@gmail.com"
           git config --global user.name "Anand Raj"
           git tag -a v1.0 -m "Version 1.0"
+          git push origin v1.0
