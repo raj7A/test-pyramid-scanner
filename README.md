@@ -1,4 +1,5 @@
 # test-pyramid-scanner
+[![CI](https://github.com/raj7A/test-pyramid-scanner/actions/workflows/tag.yml/badge.svg)](https://github.com/raj7A/test-pyramid-scanner/actions/workflows/tag.yml)
 ### What :
 Test pyramid is one of good practices that should be followed while working on tests. Better if more Unit tests and less Integration/service tests.
 
