@@ -3,6 +3,11 @@ name: CI
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    types:
+      - opened
+    branches:
+      - '**'  
 
 jobs:
   build:
@@ -10,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          token: ${{ secrets.WORKFLOW_GIT_ACCESS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Tag the package
         run: |
           git config --global user.email "raj7.eie@gmail.com"
