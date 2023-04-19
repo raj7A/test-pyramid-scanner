@@ -92,7 +92,6 @@ tp() {
   else
     echo -n "Invalid path specified : "
     PWD
-    tput setaf 0
     exit
   fi
   #get total test count
