@@ -21,9 +21,10 @@ This "tp-scanner" script could be used to give us a sense of TestPyramid of our 
 ### How :
 <details><summary>Without installation</summary>
 
-Execute loosely using the command, bash tp-scanner $HOME/{application_absolute_path}
+Checkout the latest tag (or the required tag version) and execute loosely using the command,
 
 ```
+   git checkout tags/v1.0.3
    bash tp-scanner $HOME/test-pyramid-scanner/demo
 ```   
 
@@ -35,15 +36,16 @@ Execute loosely using the command, bash tp-scanner $HOME/{application_absolute_p
 Install as git GLOBAL PRE-COMMIT hook (better and suggested) - Use any **ONE** approach from below.
 
 #### Approach 1. Using install.sh script :
+Checkout the latest tag (or the required tag version)
 ```
-    bash install.sh
+    bash install.sh v1.0.3 
 ```
 And then add the below line inside corresponding terminal startup file (like "$HOME/.zshrc")
 ```
     alias tp-scanner="$HOME/scripts/tp-scanner"
 ```
 #### Approach 2. Manual steps :
-1. Follow the below steps (manual) :
+1. Follow the below steps :
          - Add the below lines in "$HOME/.gitconfig file" : 
 ```
     [core]
@@ -52,7 +54,7 @@ And then add the below line inside corresponding terminal startup file (like "$H
 2. Create the below folder, if not exists already, \
            - $HOME/.git-template/hooks/ \
            - $HOME/scripts
-3. Copy and paste the 'tp-scanner' script file into '$HOME/scripts' folder.
+3. Checkout the latest tag (or the required tag version), copy and paste the 'tp-scanner' script file into '$HOME/scripts' folder.
 4. Append/Add the below lines in "$HOME/.git-template/hooks/pre-commit" file (create the file if missing) : 
 ```
     ########## test pyramid scan ##########

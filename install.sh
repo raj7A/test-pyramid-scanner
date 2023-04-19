@@ -8,6 +8,12 @@ git_pre_commit_file_bkp="$git_hook_path/pre-commit-bkp"
 tp_script_path="$HOME/scripts"
 tp_script_file="$tp_script_path/tp-scanner"
 
+if [ -z "$1" ]; then
+  echo "Tag not passed - using version from current checked out branch"
+else
+  git checkout tags/$1
+fi
+
 if [ -d "$git_hook_path" ]; then
   echo "git hook folder already present - " "$git_hook_path"
 else
