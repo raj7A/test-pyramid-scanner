@@ -21,11 +21,11 @@ This "tp-scanner" script could be used to give us a sense of TestPyramid of our 
 ### How :
 <details><summary>Without installation</summary>
 
-Checkout the latest tag (or the required tag version) and execute loosely using the command,
-
+After cloning, checkout the latest tag (or the required tag version) and execute loosely using the command,
+- **Syntax** : bash tp-scanner {application_base_path}
 ```
    git checkout tags/v1.0.3
-   bash tp-scanner $HOME/test-pyramid-scanner/demo
+   bash tp-scanner $PWD/demo
 ```   
 
    ![](misc/tp_demo_output.png)
@@ -36,7 +36,7 @@ Checkout the latest tag (or the required tag version) and execute loosely using 
 Install as git GLOBAL PRE-COMMIT hook (better and suggested) - Use any **ONE** approach from below.
 
 #### Approach 1. Using install.sh script :
-Checkout the latest tag (or the required tag version)
+Get the latest tag (or the required tag version) and then run the following command,
 ```
     bash install.sh v1.0.3 
 ```
@@ -49,7 +49,7 @@ And then add the below line inside corresponding terminal startup file (like "$H
          - Add the below lines in "$HOME/.gitconfig file" : 
 ```
     [core]
-    hooksPath = {home_path_dir}/.git-template/hooks
+    hooksPath = {your_home_path_dir}/.git-template/hooks
 ```
 2. Create the below folder, if not exists already, \
            - $HOME/.git-template/hooks/ \
