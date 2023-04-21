@@ -16,12 +16,12 @@ This "tp-scanner" script could be used to give us a sense of TestPyramid of our 
     - this script can be invoked on adhoc basis and see the result.
 - _Developing/enhancing the application and need continuous feedback ?_
     - Developers working on the applications can easily miss the count on "number of tests" that is written over the time.
-    - As the Integration test increases(OR less unit tests), test suite execution time gets higher. This impacts the developer experience and CI processing      time, which eventually leads to the decision of refactoring the application.
+    - As the Integration test increases(OR less unit tests), test suite execution time gets higher. This impacts the developer experience working on his local machine and even CI pipeline processing time, which eventually leads to the decision of refactoring the application.
     - Since the main issue is the lack of early feedback on the "number of tests" written, this script could fill in that void. Integrate this script as          PRE-COMMIT hook, which make the developers more proactive by providing continuous feedback.
 ### How :
 <details><summary>Without installation</summary>
 
-After cloning, checkout the latest tag (or the required tag version) and execute loosely using the command,
+After cloning, checkout the latest tag (or the main branch) and execute loosely using the command,
 - **Syntax** : bash tp-scanner {application_base_path}
 ```
    git checkout tags/v1.0.3
@@ -36,9 +36,9 @@ After cloning, checkout the latest tag (or the required tag version) and execute
 Install as git GLOBAL PRE-COMMIT hook (better and suggested) - Use any **ONE** approach from below.
 
 #### Approach 1. Using install.sh script :
-Get the latest tag (or the required tag version) and then run the following command,
+After cloning, Get the latest tag (or the required tag version) and then run the following command,
 ```
-    bash install.sh v1.0.3 
+    bash install.sh v1.0.4 
 ```
 And then add the below line inside corresponding terminal startup file (like "$HOME/.zshrc")
 ```
